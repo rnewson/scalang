@@ -63,6 +63,9 @@ object DistributionFlags {
   val exportPtrTag = 0x200
   val bitBinaries = 0x400
   val newFloats = 0x800
+  val unicodeIO = 0x1000
+  val distHdrAtomCache = 0x2000
+  val smallAtomTags = 0x4000
   
   val default = extendedReferences | extendedPidsPorts |
     bitBinaries | newFloats | funTags | newFunTags
