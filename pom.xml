@@ -5,7 +5,7 @@
     <name>scalang</name>
     <artifactId>scalang-scala_2.9.1</artifactId>
     <packaging>jar</packaging>
-    <version>0.16-SNAPSHOT</version>
+    <version>0.16.0-cloudant</version>
     <properties>
         <scala.version>2.9.1</scala.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -138,6 +138,12 @@
           <source>1.6</source>
           <target>1.6</target>
         </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.7</version>
       </plugin>
 
       <plugin>
