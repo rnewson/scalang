@@ -1,0 +1,8 @@
+To release;
+
+1) update the version in pom.xml
+2) commit it
+3) tag it
+4) ssh to maven.cloudant.com
+5) clone the repo
+6) mvn deploy -DupdateReleaseInfo=true -DaltDeploymentRepository=cloudant::default::file:///var/www/domains/cloudant.com/maven/htdocs/repo
