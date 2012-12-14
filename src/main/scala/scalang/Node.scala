@@ -843,27 +843,9 @@ class ErlangNode(val name : Symbol, val cookie : String, config : NodeConfig) ex
     val channel = channels.getOrElseUpdate(peer, {
       connectAndSend(peer, None)
     })
-
-    if (channel.isOpen) {
-      channel.write(msg)
-    } else {
-        channels.remove(peer, channel)
-        channel.close()
-        channels.getOrElseUpdate(peer, { connectAndSend(peer, None) }).write(msg)
-    }
-
+    channel.write(msg)
     afterHandshake(channel)
-/*
-    Option(channels.get(peer)) match {
-      case Some(channel) =>
-        //race during channel shutdown
-        if (channel.isOpen) {
-          channel.write(msg)
-        }
-        afterHandshake(channel)
-      case None => connectAndSend(peer, Some(msg), afterHandshake)
-    }
-*/  }
+  }
 
   def connectAndSend(peer : Symbol, msg : Option[Any] = None, afterHandshake : Channel => Unit = {_ => Unit }) : Channel = {
     val hostname = splitHostname(peer).getOrElse(throw new ErlangNodeException("Cannot resolve peer with no hostname: " + peer.name))
