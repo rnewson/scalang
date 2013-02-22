@@ -92,7 +92,8 @@ class ErlangConnection(node : ErlangNode, peer : Symbol, config : NodeConfig) ex
     val port = Epmd(hostname).lookupPort(peerName).getOrElse(throw new ErlangNodeException("Cannot lookup peer: " + peer.name))
     val client = new ErlangNodeClient(node, peer, hostname, port, None, 
       config.typeFactory,
-      config.typeEncoder)
+      config.typeEncoder,
+      config.typeDecoder)
   }
   
   def disconnected(channel : Channel) {

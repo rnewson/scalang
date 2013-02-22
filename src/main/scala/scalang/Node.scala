@@ -202,7 +202,7 @@ class ErlangNode(val name : Symbol, val cookie : String, config : NodeConfig) ex
   val executor = poolFactory.createActorPool
   val factory = new CappedFiberFactory(executor, 1000)
   val executionHandler = new ExecutionHandler(poolFactory.createExecutorPool)
-  val server = new ErlangNodeServer(this,config.typeFactory, config.typeEncoder)
+  val server = new ErlangNodeServer(this,config.typeFactory, config.typeEncoder, config.typeDecoder)
   val localEpmd = Epmd("localhost")
   localEpmd.alive(server.port, Hostname.splitNodename(name)) match {
     case Some(c) => creation = c
