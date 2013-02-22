@@ -5,7 +5,7 @@
     <name>scalang</name>
     <artifactId>scalang-scala_2.9.1</artifactId>
     <packaging>jar</packaging>
-    <version>0.22-cloudant2</version>
+    <version>0.25-cloudant1</version>
     <properties>
         <scala.version>2.9.1</scala.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -15,22 +15,17 @@
         <dependency>
             <groupId>com.boundary</groupId>
             <artifactId>overlock-scala_${scala.version}</artifactId>
-            <version>0.8</version>
+            <version>0.8.1</version>
         </dependency>
         <dependency>
             <groupId>org.jetlang</groupId>
             <artifactId>jetlang</artifactId>
-            <version>0.2.5</version>
+            <version>0.2.10-capped</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.netty</groupId>
             <artifactId>netty</artifactId>
             <version>3.2.4.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.5.6</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -42,6 +37,12 @@
             <groupId>org.scala-tools.testing</groupId>
             <artifactId>specs_${scala.version}</artifactId>
             <version>1.6.9</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>1.9.5</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -86,7 +87,6 @@
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>
         <testSourceDirectory>src/test/scala</testSourceDirectory>
-
         <plugins>
             <plugin>
                 <groupId>org.scala-tools</groupId>
@@ -121,6 +121,12 @@
                     </execution>
                 </executions>
                 <configuration>
+                  <launchers>
+                    <launcher>
+                      <id>scalang</id>
+                      <mainClass>scalang.Main</mainClass>
+                    </launcher>
+                  </launchers>
                     <args>
                         <arg>-optimise</arg>
                         <arg>-unchecked</arg>
@@ -130,7 +136,6 @@
                     <scalaVersion>${scala.version}</scalaVersion>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
